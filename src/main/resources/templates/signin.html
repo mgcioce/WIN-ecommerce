@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragment :: head"></head>
+<head><link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"></head>
+<body style="padding: 0">
+<div th:replace="fragments/fragment :: navbar" ></div>
+
+<main role="main">
+    <div class="container">
+        <form class="form-signin" th:action="@{/signin}" method="post">
+            <h2 class="form-signin-heading" style="text-align: center">Please Sign In/Up</h2>
+            <p>
+                <label for="username" class="sr-only">Username</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Username">
+            </p>
+            <p>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+            </p>
+            <div style="display: flex; justify-content: space-between">
+                <button class="btn btn-lg btn-primary" name="submit" value="in" type="submit" style="flex-grow: 0.95">Sign In</button>
+                <button class="btn btn-lg btn-success" name="submit" value="up" type="submit">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<div th:replace="fragments/fragment :: footer"></div>
+</body>
+</html>
