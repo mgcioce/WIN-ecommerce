@@ -24,7 +24,7 @@ class AuthenticationController {
     }
 
     @PostMapping("/signin")
-    public String singup(@Valid User user,
+    public String signup(@Valid User user,
                          @RequestParam String submit,
                          BindingResult bindingResult,
                          HttpServletRequest request) throws ServletException {
@@ -33,7 +33,7 @@ class AuthenticationController {
             if(userService.findByUsername(user.getUsername()) == null) {
                 userService.saveNew(user);
             } else {
-                bindingResult.rejectValue("username", "error.user", "Username is already taken.");
+                bindingResult.rejectValue("email", "error.user", "Username is already taken.");
                 return "signin";
             }
         }

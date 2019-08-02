@@ -3,6 +3,7 @@ package com.example.ecommercesite.controller;
 import com.example.ecommercesite.model.Product;
 import com.example.ecommercesite.model.User;
 import com.example.ecommercesite.service.ProductService;
+import com.example.ecommercesite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

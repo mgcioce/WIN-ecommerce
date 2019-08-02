@@ -27,10 +27,16 @@ public class User implements UserDetails {
     private String email;
     @NotNull
     private String password;
-
+    @ElementCollection
+    private Map<Product,Integer> cart;
 
 
     public Map<Product, Integer> getCart() {
+        return this.cart;
+    }
+
+    public void setCart(Map<Product,Integer> cart) {
+        this.cart = cart;
     }
 
     private String firstName;

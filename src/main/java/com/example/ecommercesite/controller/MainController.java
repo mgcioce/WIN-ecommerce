@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,6 +24,15 @@ public class MainController {
         model.addAttribute("products",productService.findAll());
         return "index";
     }
+
+//    @GetMapping("/filter")
+//    public String filter(@RequestParam(required = false) String category,
+//                         @RequestParam(required = false) String brand,
+//                         Model model) {
+//        List<Product> filtered = productService.findByBrandAndOrCategory(brand, category);
+//        model.addAttribute("products", filtered); // Overrides the @ModelAttribute above.
+//        return "main";
+//    }
 
     @GetMapping(value = "/about")
     public String getAboutPage() {

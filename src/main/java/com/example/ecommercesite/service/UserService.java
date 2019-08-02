@@ -38,11 +38,11 @@ public class UserService implements UserDetailsService {
         return findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
-//    public void updateCart(Map<Product, Integer> cart) {
-//        User user = getLoggedInUser();
-//        user.setCart(cart);
-//        saveExisting(user);
-//    }
+    public void updateCart(Map<Product, Integer> cart) {
+        User user = getLoggedInUser();
+        user.setCart(cart);
+        saveExisting(user);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
