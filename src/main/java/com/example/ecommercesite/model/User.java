@@ -7,8 +7,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+
+import java.util.Map;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+
 import java.util.Set;
 
 @Data
@@ -24,6 +27,12 @@ public class User implements UserDetails {
     private String email;
     @NotNull
     private String password;
+
+
+
+    public Map<Product, Integer> getCart() {
+    }
+
     private String firstName;
     private String lastName;
 
