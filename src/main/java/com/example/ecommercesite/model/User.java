@@ -3,23 +3,50 @@ package com.example.ecommercesite.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String email;
+    @NotNull
     private String password;
-    @OneToMany
-    private Set<DeliveryAddress> deliveryAddressSet;
-    @OneToMany
-    private Set<PaymentMethod> paymentMethodSet;
+    private String firstName;
+    private String lastName;
+
+    //    private List<Order> orderList;
+//    @OneToMany
+//    private Set<DeliveryAddress> deliveryAddressSet;
+//    @OneToMany
+//    private Set<PaymentMethod> paymentMethodSet;
+
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+
+    @Transient
+    private boolean accountNonExpired = true;
+    @Transient
+    private boolean accountNonLocked = true;
+    @Transient
+    private boolean credentialsNonExpired = true;
+    @Transient
+    private boolean enabled = true;
+    @Transient
+    private Collection<GrantedAuthority> authorities = null;
+
 }

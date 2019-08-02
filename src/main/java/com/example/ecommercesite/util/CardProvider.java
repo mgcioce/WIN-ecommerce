@@ -12,7 +12,7 @@ public enum CardProvider {
     private  String provider;
 
     CardProvider(String provider) {
-        this.provider = provider);
+        this.provider = provider;
     }
 
     public String getProvider() {
