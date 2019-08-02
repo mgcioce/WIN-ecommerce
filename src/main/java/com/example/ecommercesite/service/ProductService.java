@@ -39,4 +39,12 @@ public class ProductService {
             }
         }
     }
+
+    public List<String> findDistinctCategories() {
+        return productRepository.findDistinctCategories();
+    }
+
+    public List<String> findDistinctBrands() {
+        return productRepository.findDistinctBrands();
+    }
 }

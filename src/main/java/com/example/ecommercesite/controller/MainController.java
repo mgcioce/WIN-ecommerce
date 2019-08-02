@@ -29,23 +29,23 @@ public class MainController {
         return "about";
     }
 
-    @GetMapping(value = "/signin")
-    public String getSignInPage() {
-        return "signin";
-    }
+//    @GetMapping(value = "/signin")
+//    public String getSignInPage() {
+//        return "signin";
+//    }
 
     @ModelAttribute("products")
     public List<Product> products() {
         return productService.findAll();
     }
 
-//    @ModelAttribute("categories")
-//    public List<String> categories() {
-//        return productService.findDistinctCategories();
-//    }
-//
-//    @ModelAttribute("brands")
-//    public List<String> brands() {
-//        return productService.findDistinctBrands();
-//    }
+    @ModelAttribute("categories")
+    public List<String> categories() {
+        return productService.findDistinctCategories();
+    }
+
+    @ModelAttribute("brands")
+    public List<String> brands() {
+        return productService.findDistinctBrands();
+    }
 }
