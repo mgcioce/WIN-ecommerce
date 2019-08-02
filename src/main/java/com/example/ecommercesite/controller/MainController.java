@@ -1,5 +1,7 @@
 package com.example.ecommercesite.controller;
 
+import com.example.ecommercesite.model.Product;
+import com.example.ecommercesite.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +15,12 @@ import java.util.List;
 @ControllerAdvice
 public class MainController {
 
-//    @Autowired
-//    ProductService productService;
+    @Autowired
+    ProductService productService;
 
     @GetMapping(value = {"/","/home"})
     public String getHomepage(Model model) {
+        model.addAttribute("products",productService.findAll());
         return "index";
     }
 
@@ -31,11 +34,11 @@ public class MainController {
         return "signin";
     }
 
-//    @ModelAttribute("products")
-//    public List<Product> products() {
-//        return productService.findAll();
-//    }
-//
+    @ModelAttribute("products")
+    public List<Product> products() {
+        return productService.findAll();
+    }
+
 //    @ModelAttribute("categories")
 //    public List<String> categories() {
 //        return productService.findDistinctCategories();

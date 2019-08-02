@@ -16,50 +16,50 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm d-flex align-items-stretch d-flex align-items-stretch">
+            <div class="col-sm d-flex align-items-stretch" th:each="product: ${products}">
                 <div class="card" style="width: 12rem;">
-                    <img class="card-img-top card-image" th:src="@{apple_mlh32ll_a_15_4_macbook_pro_with_1293726.jpg}" alt="Card image cap">
+                    <img class="card-img-top card-image" th:src="@{${product.getImage()}}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">Macbook Pro</h5>
-                        <p class="card-text">15 laptop, 512GB SSD</p>
-                        <p class="bold-text">Price $2800.00</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title" th:text="${product.getName()}"></h5>
+                        <p class="card-text" th:text="${product.getDescription()}"></p>
+                        <p class="bold-text" th:text="${#numbers.formatCurrency(product.getPrice())}"></p>
+                        <a th:href="@{'/product/{id}' (id=${product.getId()})}" class="btn btn-primary">Details</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm d-flex align-items-stretch">
-                <div class="card" style="width: 12rem;">
-                    <img class="card-img-top" th:src="@{C7_ST_Desktop_Front.jpg}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">C7 OLED</h5>
-                        <p class="card-text">65" Smart TV</p>
-                        <p class="bold-text">Price $3000.00</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm d-flex align-items-stretch">
-                <div class="card" style="width: 12rem;">
-                    <img class="card-img-top" th:src="@{iphone8-silver-select-2017.jpg}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">iPhone 8</h5>
-                        <p class="card-text">64GB, iOS 11, silver</p>
-                        <p class="bold-text">Price $799.00</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm d-flex align-items-stretch">
-                <div class="card" style="width: 12rem;">
-                    <img class="card-img-top" th:src="@{iphonexfrontback-800x573.jpg}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">iPhone X</h5>
-                        <p class="card-text">64GB, iOS 11, space gray</p>
-                        <p class="bold-text">Price $999.00</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+<!--            <div class="col-sm d-flex align-items-stretch">-->
+<!--                <div class="card" style="width: 12rem;">-->
+<!--                    <img class="card-img-top" th:src="@{C7_ST_Desktop_Front.jpg}" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">C7 OLED</h5>-->
+<!--                        <p class="card-text">65" Smart TV</p>-->
+<!--                        <p class="bold-text">Price $3000.00</p>-->
+<!--                        <a th:href="@{'/product/{id}' (id=${product.getId()})}" class="btn btn-primary">Details</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm d-flex align-items-stretch">-->
+<!--                <div class="card" style="width: 12rem;">-->
+<!--                    <img class="card-img-top" th:src="@{iphone8-silver-select-2017.jpg}" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">iPhone 8</h5>-->
+<!--                        <p class="card-text">64GB, iOS 11, silver</p>-->
+<!--                        <p class="bold-text">Price $799.00</p>-->
+<!--                        <a th:href="@{'/product/{id}' (id=${product.getId()})}" class="btn btn-primary">Details</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm d-flex align-items-stretch">-->
+<!--                <div class="card" style="width: 12rem;">-->
+<!--                    <img class="card-img-top" th:src="@{iphonexfrontback-800x573.jpg}" alt="Card image cap">-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">iPhone X</h5>-->
+<!--                        <p class="card-text">64GB, iOS 11, space gray</p>-->
+<!--                        <p class="bold-text">Price $999.00</p>-->
+<!--                        <a th:href="@{'/product/{id}' (id=${product.getId()})}" class="btn btn-primary">Details</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
         </div>
     </div>
 </main>
