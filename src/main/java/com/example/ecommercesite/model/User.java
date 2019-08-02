@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Map;
 import java.util.Set;
 
 @Data
@@ -22,4 +23,7 @@ public class User {
     private Set<DeliveryAddress> deliveryAddressSet;
     @OneToMany
     private Set<PaymentMethod> paymentMethodSet;
+
+    public Map<Product, Integer> getCart() {
+    }
 }
