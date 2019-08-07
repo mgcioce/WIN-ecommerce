@@ -2,10 +2,13 @@ package com.example.ecommercesite.controller;
 
 import com.example.ecommercesite.model.ChargeRequest;
 import com.example.ecommercesite.model.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 import java.util.Set;
@@ -13,6 +16,7 @@ import java.util.Set;
 @Controller
 public class CheckoutController {
 
+    private final Logger logger = LoggerFactory.getLogger(CheckoutController.class);
     @Value("${STRIPE_PUBLIC_KEY}")
     private String stripePublicKey;
 
@@ -26,9 +30,10 @@ public class CheckoutController {
         }
         return (int) sum * 100;
     }
-    @RequestMapping("/checkout")
-    public String checkout(Map<Product,Integer> cart, Model model) {
-        model.addAttribute("amount", calculateAmount(cart)); // in cents
+    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
+    public String checkout(Model model) {
+        logger.info(model.toString());
+        model.addAttribute("amount", calculateAmount((Map<Product,Integer>) model.asMap().get("cart"))); // in cents
         model.addAttribute("stripePublicKey", stripePublicKey);
         model.addAttribute("currency", ChargeRequest.Currency.USD);
         return "checkout";

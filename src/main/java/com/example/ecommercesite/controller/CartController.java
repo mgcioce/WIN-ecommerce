@@ -4,8 +4,10 @@ import com.example.ecommercesite.model.Product;
 import com.example.ecommercesite.model.User;
 import com.example.ecommercesite.service.ProductService;
 import com.example.ecommercesite.service.UserService;
+import com.example.ecommercesite.util.CartItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,9 +23,18 @@ public class CartController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    CartItemDTO cartItemDTO;
+
     @ModelAttribute("loggedInUser")
     public User loggedInUser() {
         return userService.getLoggedInUser();
+    }
+
+
+    private CartItemDTO cartReturnObject(CartItemDTO cartItemDTO) {
+        cartItemDTO.setProductMap(loggedInUser().getCart());
+        return cartItemDTO;
     }
 
     @ModelAttribute("cart")
@@ -43,7 +54,8 @@ public class CartController {
     }
 
     @GetMapping("/cart")
-    public String showCart() {
+    public String showCart(Model model) {
+        model.addAttribute("cartReturnObject",cartReturnObject(cartItemDTO));
         return "cart";
     }
 
