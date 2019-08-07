@@ -52,7 +52,7 @@
                 <input type="hidden" name="_method" value="PATCH" />
                 <button type="submit" class="btn btn-primary">Update Cart</button>
             </form>
-            <form th:action="@{/checkout}" th:object="${cartReturnObject}" th:method="POST">
+            <form th:action="@{/checkout}" th:object="${cartReturnObject}"  th:method="POST">
                 <input type="hidden" th:field="*{productMap}">
                 <input type="submit" class="btn btn-primary" value="Checkout">
             </form>

@@ -31,8 +31,7 @@ public class CartController {
         return userService.getLoggedInUser();
     }
 
-
-    private CartItemDTO cartReturnObject(CartItemDTO cartItemDTO) {
+    private CartItemDTO cartReturnObject() {
         cartItemDTO.setProductMap(loggedInUser().getCart());
         return cartItemDTO;
     }
@@ -55,30 +54,33 @@ public class CartController {
 
     @GetMapping("/cart")
     public String showCart(Model model) {
-        model.addAttribute("cartReturnObject",cartReturnObject(cartItemDTO));
+        model.addAttribute("cartReturnObject",cartReturnObject());
         return "cart";
     }
 
     @PostMapping("/cart")
-    public String addToCart(@RequestParam long id) {
+    public String addToCart(@RequestParam long id, Model model) {
         Product p = productService.findById(id);
         setQuantity(p, cart().getOrDefault(p, 0) + 1);
+        model.addAttribute("cartReturnObject",cartReturnObject());
         return "cart";
     }
 
     @PatchMapping("/cart")
-    public String updateQuantities(@RequestParam long[] id, @RequestParam int[] quantity) {
+    public String updateQuantities(@RequestParam long[] id, @RequestParam int[] quantity, Model model) {
         for(int i = 0; i < id.length; i++) {
             Product p = productService.findById(id[i]);
             setQuantity(p, quantity[i]);
         }
+        model.addAttribute("cartReturnObject",cartReturnObject());
         return "cart";
     }
 
     @DeleteMapping("/cart")
-    public String removeFromCart(@RequestParam long id) {
+    public String removeFromCart(@RequestParam long id, Model model) {
         Product p = productService.findById(id);
         setQuantity(p, 0);
+        model.addAttribute("cartReturnObject",cartReturnObject());
         return "cart";
     }
 
@@ -88,7 +90,7 @@ public class CartController {
         else
             cart().remove(p);
 
-        userService.updateCart(cart());
+        userService.updateCart();
     }
 }
 

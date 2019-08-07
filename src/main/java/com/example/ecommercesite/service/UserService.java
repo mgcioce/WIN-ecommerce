@@ -44,9 +44,8 @@ public class UserService implements UserDetailsService {
         saveExisting(user);
     }
 
-    public void updateCart(Map<Product, Integer> cart) {
+    public void updateCart() {
         User user = getLoggedInUser();
-        user.setCart(cart);
         saveExisting(user);
     }
 
