@@ -38,6 +38,12 @@ public class UserService implements UserDetailsService {
         return findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
     }
 
+    public void clearCart() {
+        User user = getLoggedInUser();
+        user.getCart().clear();
+        saveExisting(user);
+    }
+
     public void updateCart(Map<Product, Integer> cart) {
         User user = getLoggedInUser();
         user.setCart(cart);
